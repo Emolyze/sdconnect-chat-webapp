@@ -2,12 +2,13 @@
 // By default localStorage can store only strings, not objects or other types.
 
 import Cookies from "js-cookie";
+import { DOMAIN_NAME } from "../../.env";
 
 export const AUTH_TOKEN_NAME = "auth-token";
 export const AUTH_CRED = "AUTH_CRED";
 
 export function getDomain() {
-  return { ...cookieDomain };
+  return { ...DOMAIN_NAME };
 }
 
 export default class CookieUtil {

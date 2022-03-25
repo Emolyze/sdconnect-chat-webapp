@@ -1,13 +1,18 @@
 import React from "react";
 import { useEffect } from "react";
 import { FormattedMessage } from "react-intl";
+import { SDCONNECT_URL } from "../../.env";
 import { checkIsLogin } from "../lib/auth-utils";
+import CookieUtil, { AUTH_TOKEN_NAME } from "../lib/cookie-util";
 
 const LoginView = () => {
   useEffect(() => {
-    alert("Mantul");
     const isLogin = checkIsLogin();
-    console.log(isLogin);
+    alert("Please Login On Shop First");
+    if (!isLogin) {
+      window.location.replace(`${SDCONNECT_URL}/login`);
+      CookieUtil.removeItem(AUTH_TOKEN_NAME);
+    }
   }, []);
 
   return (

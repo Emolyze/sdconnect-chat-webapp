@@ -111,10 +111,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "checkIsLogin": () => (/* binding */ checkIsLogin)
 /* harmony export */ });
-/* harmony import */ var _lib_cookie_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../lib/cookie-util */ "./src/lib/cookie-util.js");
+/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! js-cookie */ "./node_modules/js-cookie/dist/js.cookie.mjs");
+/* harmony import */ var _lib_cookie_util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../lib/cookie-util */ "./src/lib/cookie-util.js");
+
 
 function checkIsLogin() {
-  const isLogin = Cookies.get(AUTH_CRED, (0,_lib_cookie_util__WEBPACK_IMPORTED_MODULE_0__.getDomain)());
+  const isLogin = js_cookie__WEBPACK_IMPORTED_MODULE_0__["default"].get(_lib_cookie_util__WEBPACK_IMPORTED_MODULE_1__.AUTH_CRED, (0,_lib_cookie_util__WEBPACK_IMPORTED_MODULE_1__.getDomain)());
   return !!isLogin;
 }
 
@@ -342,11 +344,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ CookieUtil)
 /* harmony export */ });
 /* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! js-cookie */ "./node_modules/js-cookie/dist/js.cookie.mjs");
+/* harmony import */ var _env__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../.env */ "./.env.js");
+
 
 const AUTH_TOKEN_NAME = "auth-token";
 const AUTH_CRED = "AUTH_CRED";
 function getDomain() {
-  return { ...cookieDomain
+  return { ..._env__WEBPACK_IMPORTED_MODULE_1__.DOMAIN_NAME
   };
 }
 class CookieUtil {
@@ -2886,7 +2890,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-intl */ "react-intl");
 /* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_intl__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _lib_auth_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../lib/auth-utils */ "./src/lib/auth-utils.js");
+/* harmony import */ var _env__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../.env */ "./.env.js");
+/* harmony import */ var _lib_auth_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../lib/auth-utils */ "./src/lib/auth-utils.js");
+/* harmony import */ var _lib_cookie_util__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../lib/cookie-util */ "./src/lib/cookie-util.js");
+
+
 
 
 
@@ -2894,9 +2902,13 @@ __webpack_require__.r(__webpack_exports__);
 
 const LoginView = () => {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    alert("Mantul");
-    const isLogin = (0,_lib_auth_utils__WEBPACK_IMPORTED_MODULE_2__.checkIsLogin)();
-    console.log(isLogin);
+    const isLogin = (0,_lib_auth_utils__WEBPACK_IMPORTED_MODULE_3__.checkIsLogin)();
+    alert("Please Login On Shop First");
+
+    if (!isLogin) {
+      window.location.replace("".concat(_env__WEBPACK_IMPORTED_MODULE_2__.SDCONNECT_URL, "/login"));
+      _lib_cookie_util__WEBPACK_IMPORTED_MODULE_4__["default"].removeItem(_lib_cookie_util__WEBPACK_IMPORTED_MODULE_4__.AUTH_TOKEN_NAME);
+    }
   }, []);
   return react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     style: {
