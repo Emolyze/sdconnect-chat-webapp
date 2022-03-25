@@ -14,7 +14,6 @@ export function getDomain() {
 export default class CookieUtil {
   // Replace old object with the new one.
   static setObject(key, value) {
-    alert(`Setting ${key} with domain ${getDomain()}`);
     Cookies.set(key, JSON.stringify(value), getDomain());
   }
 
