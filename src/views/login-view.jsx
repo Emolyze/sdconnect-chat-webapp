@@ -1,7 +1,15 @@
 import React from "react";
+import { useEffect } from "react";
 import { FormattedMessage } from "react-intl";
+import { checkIsLogin } from "../lib/auth-utils";
 
 const LoginView = () => {
+  useEffect(() => {
+    alert("Mantul");
+    const isLogin = checkIsLogin();
+    console.log(isLogin);
+  }, []);
+
   return (
     <div
       style={{

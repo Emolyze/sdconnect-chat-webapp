@@ -4,16 +4,21 @@
 import Cookies from "js-cookie";
 
 export const AUTH_TOKEN_NAME = "auth-token";
+export const AUTH_CRED = "AUTH_CRED";
+
+export function getDomain() {
+  return { ...cookieDomain };
+}
 
 export default class CookieUtil {
   // Replace old object with the new one.
   static setObject(key, value) {
-    Cookies.set(key, JSON.stringify(value));
+    Cookies.set(key, JSON.stringify(value), getDomain());
   }
 
   // Get stored object.
   static getObject(key) {
-    const value = Cookies.get(key);
+    const value = Cookies.get(key, getDomain());
     if (!value) return false;
     return value && JSON.parse(value);
   }
@@ -26,6 +31,6 @@ export default class CookieUtil {
 
   // Just a wrapper.
   static removeItem(key) {
-    Cookies.remove(key);
+    Cookies.remove(key, getDomain());
   }
 }

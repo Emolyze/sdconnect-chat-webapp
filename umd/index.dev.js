@@ -101,6 +101,25 @@ const LINK_TERMS_OF_SERVICE = "https://sdconnect.vn/terms";
 
 /***/ }),
 
+/***/ "./src/lib/auth-utils.js":
+/*!*******************************!*\
+  !*** ./src/lib/auth-utils.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "checkIsLogin": () => (/* binding */ checkIsLogin)
+/* harmony export */ });
+/* harmony import */ var _lib_cookie_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../lib/cookie-util */ "./src/lib/cookie-util.js");
+
+function checkIsLogin() {
+  const isLogin = Cookies.get(AUTH_CRED, (0,_lib_cookie_util__WEBPACK_IMPORTED_MODULE_0__.getDomain)());
+  return !!isLogin;
+}
+
+/***/ }),
+
 /***/ "./src/lib/blob-helpers.js":
 /*!*********************************!*\
   !*** ./src/lib/blob-helpers.js ***!
@@ -318,18 +337,25 @@ function base64ReEncode(str) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "AUTH_TOKEN_NAME": () => (/* binding */ AUTH_TOKEN_NAME),
+/* harmony export */   "AUTH_CRED": () => (/* binding */ AUTH_CRED),
+/* harmony export */   "getDomain": () => (/* binding */ getDomain),
 /* harmony export */   "default": () => (/* binding */ CookieUtil)
 /* harmony export */ });
 /* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! js-cookie */ "./node_modules/js-cookie/dist/js.cookie.mjs");
 
 const AUTH_TOKEN_NAME = "auth-token";
+const AUTH_CRED = "AUTH_CRED";
+function getDomain() {
+  return { ...cookieDomain
+  };
+}
 class CookieUtil {
   static setObject(key, value) {
-    js_cookie__WEBPACK_IMPORTED_MODULE_0__["default"].set(key, JSON.stringify(value));
+    js_cookie__WEBPACK_IMPORTED_MODULE_0__["default"].set(key, JSON.stringify(value), getDomain());
   }
 
   static getObject(key) {
-    const value = js_cookie__WEBPACK_IMPORTED_MODULE_0__["default"].get(key);
+    const value = js_cookie__WEBPACK_IMPORTED_MODULE_0__["default"].get(key, getDomain());
     if (!value) return false;
     return value && JSON.parse(value);
   }
@@ -340,7 +366,7 @@ class CookieUtil {
   }
 
   static removeItem(key) {
-    js_cookie__WEBPACK_IMPORTED_MODULE_0__["default"].remove(key);
+    js_cookie__WEBPACK_IMPORTED_MODULE_0__["default"].remove(key, getDomain());
   }
 
 }
@@ -2860,10 +2886,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-intl */ "react-intl");
 /* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_intl__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _lib_auth_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../lib/auth-utils */ "./src/lib/auth-utils.js");
+
+
 
 
 
 const LoginView = () => {
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    alert("Mantul");
+    const isLogin = (0,_lib_auth_utils__WEBPACK_IMPORTED_MODULE_2__.checkIsLogin)();
+    console.log(isLogin);
+  }, []);
   return react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     style: {
       display: "flex",
