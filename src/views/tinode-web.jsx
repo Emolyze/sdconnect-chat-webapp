@@ -307,6 +307,7 @@ class TinodeWeb extends React.Component {
         this.tinode.connect().catch((err) => {
           // Socket error
           this.handleError(err.message, "err");
+          alert("Error", err.message);
         });
       }
 

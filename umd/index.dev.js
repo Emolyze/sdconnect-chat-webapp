@@ -5065,6 +5065,7 @@ class TinodeWeb extends (react__WEBPACK_IMPORTED_MODULE_0___default().Component)
         this.tinode.setAuthToken(token);
         this.tinode.connect().catch(err => {
           this.handleError(err.message, "err");
+          alert("Error", err.message);
         });
       }
 
