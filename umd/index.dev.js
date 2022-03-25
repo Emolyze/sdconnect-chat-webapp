@@ -356,7 +356,6 @@ function getDomain() {
 }
 class CookieUtil {
   static setObject(key, value) {
-    alert("Setting ".concat(key, " with domain ").concat(getDomain()));
     js_cookie__WEBPACK_IMPORTED_MODULE_0__["default"].set(key, JSON.stringify(value), getDomain());
   }
 
