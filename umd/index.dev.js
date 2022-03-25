@@ -350,11 +350,13 @@ __webpack_require__.r(__webpack_exports__);
 const AUTH_TOKEN_NAME = "auth-token";
 const AUTH_CRED = "AUTH_CRED";
 function getDomain() {
-  return { ..._env__WEBPACK_IMPORTED_MODULE_1__.DOMAIN_NAME
+  return {
+    domain: _env__WEBPACK_IMPORTED_MODULE_1__.DOMAIN_NAME
   };
 }
 class CookieUtil {
   static setObject(key, value) {
+    alert("Setting ".concat(key, " with domain ").concat(getDomain()));
     js_cookie__WEBPACK_IMPORTED_MODULE_0__["default"].set(key, JSON.stringify(value), getDomain());
   }
 
@@ -365,8 +367,8 @@ class CookieUtil {
   }
 
   static updateObject(key, value) {
-    const oldVal = this.getObject(key);
-    this.setObject(key, Object.assign(oldVal || {}, value));
+    const oldVal = this.getObject(key, getDomain());
+    this.setObject(key, Object.assign(oldVal || {}, value), getDomain());
   }
 
   static removeItem(key) {

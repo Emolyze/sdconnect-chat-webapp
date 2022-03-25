@@ -8,12 +8,13 @@ export const AUTH_TOKEN_NAME = "auth-token";
 export const AUTH_CRED = "AUTH_CRED";
 
 export function getDomain() {
-  return { ...DOMAIN_NAME };
+  return { domain: DOMAIN_NAME };
 }
 
 export default class CookieUtil {
   // Replace old object with the new one.
   static setObject(key, value) {
+    alert(`Setting ${key} with domain ${getDomain()}`);
     Cookies.set(key, JSON.stringify(value), getDomain());
   }
 
@@ -26,8 +27,8 @@ export default class CookieUtil {
 
   // Partially or wholly update stored object.
   static updateObject(key, value) {
-    const oldVal = this.getObject(key);
-    this.setObject(key, Object.assign(oldVal || {}, value));
+    const oldVal = this.getObject(key, getDomain());
+    this.setObject(key, Object.assign(oldVal || {}, value), getDomain());
   }
 
   // Just a wrapper.
