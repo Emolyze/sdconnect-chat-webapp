@@ -8,7 +8,7 @@ import CookieUtil, { AUTH_TOKEN_NAME } from "../lib/cookie-util";
 const LoginView = () => {
   useEffect(() => {
     const isLogin = checkIsLogin();
-    alert("Please Login On Shop First");
+    // alert("Please Login On Shop First");
     if (!isLogin) {
       window.location.replace(`${SDCONNECT_URL}/login`);
       CookieUtil.removeItem(AUTH_TOKEN_NAME);

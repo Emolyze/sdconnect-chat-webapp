@@ -2903,7 +2903,6 @@ __webpack_require__.r(__webpack_exports__);
 const LoginView = () => {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     const isLogin = (0,_lib_auth_utils__WEBPACK_IMPORTED_MODULE_3__.checkIsLogin)();
-    alert("Please Login On Shop First");
 
     if (!isLogin) {
       window.location.replace("".concat(_env__WEBPACK_IMPORTED_MODULE_2__.SDCONNECT_URL, "/login"));
