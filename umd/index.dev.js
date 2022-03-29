@@ -1533,6 +1533,9 @@ class ContactsView extends (react__WEBPACK_IMPORTED_MODULE_0___default().Compone
     let unreadThreads = 0;
     let archivedCount = 0;
     props.chatList.map(c => {
+      var _c$public;
+
+      if ((c === null || c === void 0 ? void 0 : (_c$public = c.public) === null || _c$public === void 0 ? void 0 : _c$public.fn) === props.loggedInTitle) return;
       const blocked = c.acs && !c.acs.isJoiner();
 
       if (blocked && props.blocked) {
@@ -1560,7 +1563,7 @@ class ContactsView extends (react__WEBPACK_IMPORTED_MODULE_0___default().Compone
 
     if (archivedCount > 0) {
       contacts.push({
-        action: 'archive',
+        action: "archive",
         title: messages.archived_contacts_title,
         values: {
           count: archivedCount
@@ -1617,7 +1620,6 @@ class ContactsView extends (react__WEBPACK_IMPORTED_MODULE_0___default().Compone
   }
 
 }
-;
 
 /***/ }),
 
@@ -4746,6 +4748,7 @@ class SidepanelView extends (react__WEBPACK_IMPORTED_MODULE_0___default().Compon
       topicSelected: this.props.topicSelected,
       archive: view == "archive",
       blocked: view == "blocked",
+      loggedInTitle: title,
       chatList: this.props.chatList,
       showContextMenu: this.props.showContextMenu,
       onTopicSelected: this.props.onTopicSelected,
