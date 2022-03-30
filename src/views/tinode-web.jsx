@@ -274,7 +274,8 @@ class TinodeWeb extends React.Component {
       this.tinode.onAutoreconnectIteration = this.handleAutoreconnectIteration;
     }).then(() => {
       // Initialize desktop alerts.
-      if (this.state.desktopAlertsEnabled) {
+      // if (this.state.desktopAlertsEnabled) {
+      if (false) {
         this.initFCMessaging()
           .then(() => {
             if (this.state.desktopAlerts) {
@@ -378,7 +379,7 @@ class TinodeWeb extends React.Component {
       return navigator.serviceWorker
         .register("/service-worker.js")
         .then((reg) => {
-          this.checkForAppUpdate(reg);
+          // this.checkForAppUpdate(reg);
           this.fbPush.useServiceWorker(reg);
           reg.active.postMessage(
             JSON.stringify({ locale: locale, version: PACKAGE_VERSION })

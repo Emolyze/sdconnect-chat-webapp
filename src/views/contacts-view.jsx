@@ -28,6 +28,7 @@ export default class ContactsView extends React.Component {
     let unreadThreads = 0;
     let archivedCount = 0;
     props.chatList.map((c) => {
+      if (!c.private || !c.public) return;
       if (c?.public?.fn === props.loggedInTitle) return;
 
       const blocked = c.acs && !c.acs.isJoiner();

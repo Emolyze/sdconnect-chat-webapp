@@ -1016,7 +1016,12 @@ class MessagesView extends React.Component {
         const online = this.props.online
           ? "online" + (this.state.typingIndicator ? " typing" : "")
           : "offline";
+
         const sluggedUrl = `${SDCONNECT_URL}/nha-cung-cap/${this.state.topic}`;
+        if (!this.state.title) {
+          window.location.replace("/");
+        }
+
         component2 = (
           <>
             <div id="topic-caption-panel" className="caption-panel">
